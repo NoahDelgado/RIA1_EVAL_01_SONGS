@@ -22,11 +22,12 @@ module.exports = class Playlist {
      * @param songs : Song[] of songs
      */
     constructor(title, songs) {
-        throw new Error();
+        this.#songs=songs;
+        this.#title=title;
     }
 
     get title(){
-        throw new Error();
+        return this.#title;
     }
 
     /**
@@ -34,7 +35,7 @@ module.exports = class Playlist {
      *        Sum of all songs length.
      */
     get length(){
-        throw new Error();
+        return this.#songs.map(song => song.length).reduce((prev, next) => prev + next);
     }
 
     /**
@@ -42,7 +43,7 @@ module.exports = class Playlist {
      * @returns songs
      */
     get songs(){
-        throw new Error();
+        return this.#songs;
     }
 
     /**
@@ -51,7 +52,7 @@ module.exports = class Playlist {
      * @returns the list of songs, after including the "songsToAdd" in the current song's list
      */
     addSongs(songsToAdd){
-        throw new Error();
+        this.#songs= this.#songs.concat(songsToAdd);
     }
 
     /**
@@ -62,7 +63,11 @@ module.exports = class Playlist {
      * @exception Throws EmptySongsListException if the newListOfSongs is empty
      */
     initSongs(newListOfSongs){
-        throw new Error();
+        if(newListOfSongs==null){
+            throw new EmptySongsListException();
+        }else {
+            this.#songs = [].concat(newListOfSongs);
+        }
     }
     //endregion public methods
 
